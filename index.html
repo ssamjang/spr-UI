@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <script>
+        let throwHand = ["scissors", "paper", "rock"];
+        let score = 0;
+        function computerPlay(){
+            let hand = Math.floor(Math.random()*3);
+            return throwHand[hand];
+        }
+
+        function playRound(playerSelection, computerSelection){
+            console.log("You threw " + playerSelection + '!');
+            console.log("Opponent threw " + computerSelection + '!');
+            let flagInput = true;
+            while(flagInput){
+                switch(playerSelection){
+                case "scissors":
+                    if(computerSelection == "scissors"){
+                        console.log("DRAW!")
+                    }else if(computerSelection == "paper"){
+                        console.log("WIN!")
+                        score++;
+                    }else{
+                        console.log("LOSE!")
+                    }
+                    flagInput = false;
+                    break;
+                case "paper":
+                    if(computerSelection == "scissors"){
+                            console.log("LOSE!")
+                        }else if(computerSelection == "paper"){
+                            console.log("DRAW!")
+                        }else{
+                            console.log("WIN!")
+                            score++;
+                        }
+                        flagInput = false;
+                        break;
+                case "rock":
+                    if(computerSelection == "scissors"){
+                            console.log("WIN!")
+                            score++;
+                        }else if(computerSelection == "paper"){
+                            console.log("LOSE!")
+                        }else{
+                            console.log("DRAW!")
+                        }
+                        flagInput = false;
+                        break;
+                }
+            }
+            
+        }  
+        
+        function game() {
+            score = 0; //reset score and round number
+            round = 1;
+            console.log("Welcome to Scissors Paper Rock")
+            let playerChoice
+
+            while (score < 5){
+                console.log("Round: "+round);
+                console.log("Current Score: "+ score);
+                console.log("Type your choice...");
+                
+                //Inputs
+                playerChoice = prompt();
+                playerChoice = playerChoice.toLowerCase();
+                if(!(throwHand.includes(playerChoice))){
+                    console.log("Invalid input. Please enter 'scissors' 'paper' or 'rock'");
+                }else{
+                    playRound(playerChoice, computerPlay());
+                    round++;
+                }
+            }
+
+            console.log("Game over");
+
+        }
+
+    </script>
+    
+</body>
